@@ -1,6 +1,8 @@
 export interface FormShape {
   name: string;
   description: string;
+  email: string;
+  phone: number;
 }
 
 export interface BasicComponentProps {

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useFormState } from 'react-hook-form';
 import TextFieldWrapper from '../Components/TextFieldWrapper';
 
 export function SimpleForm(
@@ -9,7 +9,11 @@ export function SimpleForm(
     submitForm: (formValues: any) => void;
   }
 ) {
-  const { handleSubmit } = useFormContext();
+  const { handleSubmit, control } = useFormContext();
+  const { dirtyFields, errors } = useFormState({ control });
+
+  console.log('Dirty fields: ', dirtyFields);
+  console.log('Erros: ', errors);
 
   return (
     <Box sx={{ p: 4, margin: 'auto' }} justifyContent="center" alignItems="center" width="50vw">
@@ -26,6 +30,14 @@ export function SimpleForm(
 
           <Grid item xs={12}>
             <TextFieldWrapper name="description" label="Please give a short description" />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextFieldWrapper name="email" label="Please give an email" />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextFieldWrapper name="phone" label="Please give a phone number" />
           </Grid>
 
           <Grid item xs={12}>

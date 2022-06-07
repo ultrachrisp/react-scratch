@@ -7,17 +7,19 @@ import { SimpleForm } from './SimpleForm';
 
 const defaultValues: FormShape = {
   name: '',
-  description: ''
+  description: '',
+  email: '',
+  phone: 0
 }
 
 function Form() {
-  const formContext = useForm({
+  const formContext = useForm<FormShape>({
     defaultValues: defaultValues,
     resolver: yupResolver(FormSchema),
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    console.log('Submitted: ', data);
   }
 
   return (
